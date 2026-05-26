@@ -1,0 +1,9 @@
+Django==5.0.6
+django-crispy-forms
+crispy-bootstrap5
+pillow
+python-dotenv
+langchain
+langchain-community
+chromadb
+google-generativeai

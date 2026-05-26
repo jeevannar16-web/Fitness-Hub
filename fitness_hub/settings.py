@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'exercises',
     'store',
     'inspiration',
-    'ai_assistant',
+
     
     # Third Party
     'crispy_forms',
