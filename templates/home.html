@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Fitness Hub - Your Fitness Journey Starts Here{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>Your Fitness <span>Journey</span> Starts Here</h1>
+        <p>Discover exercises, gear up with the best products, and stay inspired every step of the way.</p>
+        <a href="{% url 'exercise_list' %}" class="btn btn-primary btn-lg me-2">
+            <i class="bi bi-lightning"></i> Browse Exercises
+        </a>
+        <a href="{% url 'product_list' %}" class="btn btn-outline-light btn-lg">
+            <i class="bi bi-bag"></i> Shop Now
+        </a>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="section-title">
+            <h2>Why Fitness Hub?</h2>
+            <p>Everything you need to crush your fitness goals</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="icon"><i class="bi bi-lightning-charge"></i></div>
+                    <h4>Exercise Library</h4>
+                    <p>Browse hundreds of exercises categorized by muscle group and difficulty level.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="icon"><i class="bi bi-bag-check"></i></div>
+                    <h4>Fitness Store</h4>
+                    <p>Shop premium fitness equipment, supplements, and gear at great prices.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="icon"><i class="bi bi-fire"></i></div>
+                    <h4>Daily Inspiration</h4>
+                    <p>Stay motivated with quotes, tips, and stories from the fitness community.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if featured_exercises %}
+<section class="py-5" style="background: #fff;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Featured Exercises</h2>
+            <p>Popular workouts to get you started</p>
+        </div>
+        <div class="row g-4">
+            {% for exercise in featured_exercises %}
+            <div class="col-md-4">
+                <div class="card exercise-card">
+                    {% if exercise.image %}
+                    <img src="{{ exercise.image.url }}" class="card-img-top" alt="{{ exercise.name }}">
+                    {% else %}
+                    <div class="card-img-top d-flex align-items-center justify-content-center" style="height:200px; background: linear-gradient(135deg, var(--dark), var(--secondary)); color: #fff;">
+                        <i class="bi bi-lightning-charge" style="font-size: 3rem;"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <span class="badge bg-danger mb-2">{{ exercise.difficulty }}</span>
+                        <h5 class="card-title">{{ exercise.name }}</h5>
+                        <p class="card-text text-muted">{{ exercise.description|truncatewords:15 }}</p>
+                        <a href="{% url 'exercise_detail' exercise.pk %}" class="btn btn-sm btn-outline-dark">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'exercise_list' %}" class="btn btn-primary">View All Exercises</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if recent_inspiration %}
+<section class="py-5">
+    <div class="container">
+        <div class="section-title">
+            <h2>Stay Inspired</h2>
+            <p>Motivation to fuel your journey</p>
+        </div>
+        <div class="row g-4">
+            {% for post in recent_inspiration %}
+            <div class="col-md-4">
+                <div class="inspiration-card">
+                    <blockquote>"{{ post.quote }}"</blockquote>
+                    <div class="author">— {{ post.author }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'inspiration_list' %}" class="btn btn-primary">More Inspiration</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

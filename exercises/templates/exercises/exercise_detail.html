@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ exercise.name }} - Fitness Hub{% endblock %}
+
+{% block content %}
+<div class="detail-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-light">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'exercise_list' %}" class="text-light">Exercises</a></li>
+                <li class="breadcrumb-item active text-white-50">{{ exercise.name }}</li>
+            </ol>
+        </nav>
+        <h1>{{ exercise.name }}</h1>
+        <div class="mt-2">
+            <span class="badge bg-danger me-2">{{ exercise.difficulty|title }}</span>
+            <span class="badge bg-light text-dark">{{ exercise.get_muscle_group_display }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8">
+            {% if exercise.image %}
+            <img src="{{ exercise.image.url }}" class="img-fluid rounded mb-4" alt="{{ exercise.name }}" style="max-height: 400px; width: 100%; object-fit: cover;">
+            {% endif %}
+
+            <h3>About This Exercise</h3>
+            <p class="lead">{{ exercise.description }}</p>
+
+            {% if exercise.instructions %}
+            <h4 class="mt-4">Instructions</h4>
+            <div class="p-3 bg-light rounded">
+                {{ exercise.instructions|linebreaksbr }}
+            </div>
+            {% endif %}
+
+            {% if exercise.video_url %}
+            <h4 class="mt-4">Video</h4>
+            <a href="{{ exercise.video_url }}" target="_blank" class="btn btn-outline-dark">
+                <i class="bi bi-play-circle"></i> Watch Video
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Workout Details</h5>
+                    <hr>
+                    <p><strong>Sets:</strong> {{ exercise.sets }}</p>
+                    <p><strong>Reps:</strong> {{ exercise.reps }}</p>
+                    <p><strong>Muscle Group:</strong> {{ exercise.get_muscle_group_display }}</p>
+                    <p><strong>Difficulty:</strong> {{ exercise.difficulty|title }}</p>
+                </div>
+            </div>
+
+            {% if related %}
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Related Exercises</h5>
+                    <hr>
+                    {% for r in related %}
+                    <div class="d-flex align-items-center mb-3">
+                        <div>
+                            <a href="{% url 'exercise_detail' r.pk %}" class="fw-bold text-decoration-none">{{ r.name }}</a>
+                            <br>
+                            <small class="text-muted">{{ r.get_muscle_group_display }} &middot; {{ r.difficulty|title }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

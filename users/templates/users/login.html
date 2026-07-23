@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Fitness Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="auth-container">
+        <h2><i class="bi bi-box-arrow-in-right"></i> Welcome Back</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label fw-bold">Username</label>
+                <input type="text" name="username" class="form-control" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            {% if form.errors %}
+            <div class="alert alert-danger">Invalid username or password.</div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary w-100 mt-2">Login</button>
+        </form>
+        <p class="text-center mt-3">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+    </div>
+</div>
+{% endblock %}

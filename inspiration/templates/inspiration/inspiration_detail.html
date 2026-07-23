@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - Fitness Hub{% endblock %}
+
+{% block content %}
+<div class="detail-hero">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-light">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'inspiration_list' %}" class="text-light">Inspiration</a></li>
+                <li class="breadcrumb-item active text-white-50">{{ post.title }}</li>
+            </ol>
+        </nav>
+        <span class="badge bg-light text-dark">{{ post.get_category_display }}</span>
+        <h1 class="mt-2">{{ post.title }}</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-5">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" class="img-fluid rounded mb-4" alt="{{ post.title }}">
+                    {% endif %}
+
+                    <blockquote class="fs-4 fst-italic border-start border-4 border-primary ps-4 mb-4">
+                        "{{ post.quote }}"
+                    </blockquote>
+
+                    {% if post.author %}
+                    <p class="text-end fw-bold text-muted">— {{ post.author }}</p>
+                    {% endif %}
+
+                    <hr>
+                    <small class="text-muted">
+                        <i class="bi bi-calendar"></i> {{ post.created_at|date:"F d, Y" }}
+                        &middot;
+                        <span class="badge bg-secondary">{{ post.get_category_display }}</span>
+                    </small>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{% url 'inspiration_list' %}" class="btn btn-outline-dark">
+                    <i class="bi bi-arrow-left"></i> Back to Inspiration
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

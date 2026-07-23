@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Exercises - Fitness Hub{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="section-title">
+        <h2><i class="bi bi-lightning"></i> Exercise Library</h2>
+        <p>Find the perfect exercise for your workout</p>
+    </div>
+
+    <div class="filter-bar">
+        <form method="GET" class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label fw-bold">Muscle Group</label>
+                <select name="muscle_group" class="form-select" onchange="this.form.submit()">
+                    <option value="">All Muscle Groups</option>
+                    {% for value, label in muscle_choices %}
+                    <option value="{{ value }}" {% if selected_muscle == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label fw-bold">Difficulty</label>
+                <select name="difficulty" class="form-select" onchange="this.form.submit()">
+                    <option value="">All Levels</option>
+                    {% for value, label in difficulty_choices %}
+                    <option value="{{ value }}" {% if selected_difficulty == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'exercise_list' %}" class="btn btn-outline-dark w-100">Clear Filters</a>
+            </div>
+        </form>
+    </div>
+
+    {% if exercises %}
+    <div class="row g-4">
+        {% for exercise in exercises %}
+        <div class="col-md-4">
+            <div class="card exercise-card">
+                {% if exercise.image %}
+                <img src="{{ exercise.image.url }}" class="card-img-top" alt="{{ exercise.name }}">
+                {% else %}
+                <div class="card-img-top d-flex align-items-center justify-content-center" style="height:200px; background: linear-gradient(135deg, var(--dark), var(--secondary)); color: #fff;">
+                    <i class="bi bi-lightning-charge" style="font-size: 3rem;"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge bg-danger">{{ exercise.difficulty|title }}</span>
+                        <span class="badge-category">{{ exercise.get_muscle_group_display }}</span>
+                    </div>
+                    <h5 class="card-title">{{ exercise.name }}</h5>
+                    <p class="card-text text-muted">{{ exercise.description|truncatewords:15 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted"><i class="bi bi-arrow-repeat"></i> {{ exercise.sets }} x {{ exercise.reps }}</small>
+                        <a href="{% url 'exercise_detail' exercise.pk %}" class="btn btn-sm btn-outline-dark">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="bi bi-inbox" style="font-size: 4rem; color: #ccc;"></i>
+        <h4 class="mt-3 text-muted">No exercises found</h4>
+        <p class="text-muted">Try adjusting your filters or check back later.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
