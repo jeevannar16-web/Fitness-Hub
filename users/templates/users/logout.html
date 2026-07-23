@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Logged Out - Fitness Hub{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="auth-container text-center">
+        <h2><i class="bi bi-box-arrow-right"></i> Logged Out</h2>
+        <p class="mt-3 mb-4">You have been successfully logged out.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary me-2">Login Again</a>
+        <a href="{% url 'home' %}" class="btn btn-outline-dark">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

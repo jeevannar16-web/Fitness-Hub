@@ -1,0 +1,309 @@
+/* Fitness Hub - Main Styles */
+
+:root {
+    --primary: #e63946;
+    --secondary: #1d3557;
+    --accent: #457b9d;
+    --light: #f1faee;
+    --dark: #0d1b2a;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--dark) !important;
+    padding: 0.8rem 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #fff !important;
+}
+
+.navbar-brand span {
+    color: var(--primary);
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.8) !important;
+    font-weight: 500;
+    margin: 0 0.3rem;
+    transition: color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary) !important;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+    color: #fff;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: #c1121f;
+    border-color: #c1121f;
+}
+
+.btn-outline-light:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Feature Cards */
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title h2 {
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.section-title p {
+    color: #6c757d;
+}
+
+.feature-card {
+    background: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.feature-card .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.feature-card h4 {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: #6c757d;
+}
+
+/* Exercise Cards */
+.exercise-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+.exercise-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.exercise-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.exercise-card .card-body {
+    padding: 1.2rem;
+}
+
+.exercise-card .badge {
+    font-size: 0.75rem;
+}
+
+/* Store Cards */
+.store-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+.store-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.store-card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+.store-card .price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* Inspiration Cards */
+.inspiration-card {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.inspiration-card:hover {
+    transform: translateY(-3px);
+}
+
+.inspiration-card blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    border-left: 4px solid var(--primary);
+    padding-left: 1rem;
+    margin: 1rem 0;
+}
+
+.inspiration-card .author {
+    text-align: right;
+    opacity: 0.8;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--dark);
+    color: rgba(255,255,255,0.7);
+    padding: 2rem 0;
+}
+
+.footer a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--primary);
+}
+
+.footer h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Auth Forms */
+.auth-container {
+    max-width: 450px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.auth-container h2 {
+    text-align: center;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+}
+
+/* Profile */
+.profile-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.profile-card .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+}
+
+/* Filter Bar */
+.filter-bar {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Detail Page */
+.detail-hero {
+    background: linear-gradient(135deg, var(--dark), var(--secondary));
+    color: #fff;
+    padding: 3rem 0;
+}
+
+/* Messages */
+.alert {
+    border-radius: 8px;
+}
+
+/* Category Badge */
+.badge-category {
+    background-color: var(--accent);
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Muscle Group Tags */
+.muscle-tag {
+    display: inline-block;
+    background-color: var(--light);
+    color: var(--secondary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    margin: 0.15rem;
+}
